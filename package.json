@@ -7,7 +7,9 @@
     "dev": "nodemon src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write",
-    "format:check": "prettier --check"
+    "format:check": "prettier --check",
+    "prepare": "husky",
+    "lint-staged": "prettier --write --ingnore-unknown"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +20,10 @@
     "@types/express": "^5.0.6",
     "@types/node": "^25.2.0",
     "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
     "globals": "^17.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "nodemon": "^3.1.11",
     "prettier": "3.8.1",
     "ts-node": "^10.9.2",
