@@ -1,7 +1,9 @@
 import { app } from './app.ts';
+import 'dotenv/config';
+import { config } from './config/index.ts';
 
 (async () => {
-  app.listen(5000, () => {
-    console.log('Server started on port 5000');
+  app.listen(config.PORT, () => {
+    console.log(`server is running on ${config.APP_URL}`);
   });
 })();
