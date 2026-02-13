@@ -12,6 +12,7 @@ export const envSchema = z.object({
     .default('development'),
   DATABASE_URL: z.string(),
 });
+
 const envParser = envSchema.safeParse(process.env);
 
 if (envParser.error) {
