@@ -5,6 +5,7 @@ export const envSchema = z.object({
   APP_URL: z
     .string()
     .optional()
+    
     .default(`http://localhost:${process.env.PORT}  `),
   NODE_ENV: z
     .union([z.literal('development'), z.literal('production')])
