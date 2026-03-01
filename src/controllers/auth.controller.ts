@@ -4,5 +4,4 @@ async function loginController(req: Request, res: Response) {
   const url = await loginService();
   res.redirect(url);
 }
-
 export { loginController };
