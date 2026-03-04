@@ -1,7 +1,7 @@
 import type { Environment } from '../types/env.ts';
 import { env } from './env.ts';
 
-// TODO: Add more env variables
+// TODO: Add more env variabless
 
 const _config: Environment = {
   ...env,
