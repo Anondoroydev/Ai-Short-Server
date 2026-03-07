@@ -1,4 +1,5 @@
 import type { ConfigAndEnv } from '../types/config.ts';
+import type { Environment } from '../types/env';
 import { env } from './env.ts';
 
 const _config: ConfigAndEnv = {
