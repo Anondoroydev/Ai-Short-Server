@@ -1,6 +1,6 @@
-import type { ConfigAndEnv } from '../types/config.ts';
-import type { Environment } from '../types/env';
-import { env } from './env.ts';
+import type { ConfigAndEnv } from '../types/config.js';
+import type { Environment } from '../types/env.js';
+import { env } from './env.js';
 
 // TODO: Add more env variables
 
