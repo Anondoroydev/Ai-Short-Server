@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { envSchema } from '../zosSchema/env.validation.ts';
+import { envSchema } from '../zodSchema/env.validation.ts';
 
 const envParser = envSchema.safeParse(process.env);
 

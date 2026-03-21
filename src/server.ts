@@ -1,6 +1,6 @@
-import { app } from './app.ts';
+import { app } from './app.js';
 import 'dotenv/config';
-import { config } from './config/index.ts';
+import { config } from './config/index.js';
 
 (async () => {
   app.listen(config.PORT, () => {
