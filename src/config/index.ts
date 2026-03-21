@@ -10,6 +10,7 @@ const _config: ConfigAndEnv = {
     'https://www.googleapis.com/auth/userinfo.profile',
     'openid',
   ],
+  WINSTION_LEVEL: 'info',
 };
 
 export const config: ConfigAndEnv = Object.freeze(_config);

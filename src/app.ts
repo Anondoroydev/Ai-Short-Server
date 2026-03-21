@@ -8,17 +8,26 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { authRouter } from './router/auth.routes.js';
 import { type HttpError } from 'http-errors';
+import { logger } from './config/winstonLogger.ts';
 
 const app: Application = express();
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+// app.get('/', (req: Request, res: Response) => {
+//   res.send('Hello World!');
+// });
 
 app.use('/api/v1', authRouter);
+
+app.get('/logger', (_, res) => {
+  logger.info('Hello World!');
+  logger.warn('Hello World!');
+  logger.error('Hello World!');
+  logger.debug('Hello World!');
+  res.send('Logs generated in terminal');
+});
 
 app.use(function (
   err: HttpError,
