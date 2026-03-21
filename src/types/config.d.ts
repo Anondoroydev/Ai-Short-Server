@@ -1,7 +1,7 @@
-import type { Environment } from './env/ts';
+import type { Environment } from './env';
 
 type Config = {
-  GOOGLE_SCOPES;
+  GOOGLE_SCOPES: string[];
 };
 
 type ConfigAndEnv = Environment & Config;

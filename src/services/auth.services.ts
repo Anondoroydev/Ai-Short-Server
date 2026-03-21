@@ -1,7 +1,7 @@
 import { config } from '../config/index.ts';
-import { google } from 'googleapis';
+import { google, type Auth } from 'googleapis';
 
-const oauth2Client = new google.auth.OAuth2(
+const oauth2Client: Auth.OAuth2Client = new google.auth.OAuth2(
   config.GOOGLE_CLIENT_ID,
   config.GOOGLE_CLIENT_SECRET,
   config.GOOGLE_REDIRECT_URI,
@@ -15,4 +15,10 @@ const loginService = async () => {
   return url;
 };
 
-export { loginService };
+const loginCallbackService = async (code: string) => {
+  const { tokens } = await oauth2Client.getToken(code);
+  oauth2Client.setCredentials(tokens);
+  return tokens;
+};
+
+export { loginService, loginCallbackService, oauth2Client, google };
