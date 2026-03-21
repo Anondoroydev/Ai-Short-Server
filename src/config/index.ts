@@ -2,9 +2,7 @@ import type { ConfigAndEnv } from '../types/config.js';
 import type { Environment } from '../types/env.js';
 import { env } from './env.js';
 
-// TODO: Add more env variables
-
-const _config: Environment = {
+const _config: ConfigAndEnv = {
   ...env,
   APP_URL: env.APP_URL || `http://localhost:${env.PORT}`,
   GOOGLE_SCOPES: [
