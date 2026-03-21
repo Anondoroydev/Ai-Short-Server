@@ -1,7 +1,7 @@
 import { app } from './app.js';
 import 'dotenv/config';
 import { config } from './config/index.js';
-import logger from './config/winstonLogger.ts';
+import { logger } from './config/winstonLogger.ts';
 
 (async () => {
   app.listen(config.PORT, () => {
