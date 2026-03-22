@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch src --ext ts,tsx --exec tsx src/server.ts",
+    "dev": "nodemon --watch src --ext ts,tsx --exec tsx --import ./src/config/instrument.ts src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format:fix": "prettier --write .",
     "format:check": "prettier --check .",
@@ -46,6 +46,8 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
+    "@sentry/node": "^10.45.0",
+    "@sentry/profiling-node": "^10.45.0",
     "@types/http-errors": "^2.0.5",
     "express": "^5.2.1",
     "googleapis": "^171.4.0",
