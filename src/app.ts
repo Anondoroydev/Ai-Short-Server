@@ -40,6 +40,6 @@ app.use(function (
   res: Response,
   next: NextFunction,
 ) {
-  return next(createHttpError(500, 'something fishy fishy'));
+  return next(createHttpError(500, err.message));
 });
 export { app };
