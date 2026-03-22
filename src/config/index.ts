@@ -10,7 +10,7 @@ const _config: ConfigAndEnv = {
     'openid',
   ],
   WINSTION_LEVEL: 'info',
-  SENTRY_DSN: env.SENTRY_DSN,
+  DSN: env.DSN,
 };
 
 export const config: ConfigAndEnv = Object.freeze(_config);
