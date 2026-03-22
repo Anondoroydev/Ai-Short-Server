@@ -9,6 +9,7 @@ import cors from 'cors';
 import { authRouter } from './router/auth.routes.js';
 import { type HttpError } from 'http-errors';
 import { logger } from './config/winstonLogger.ts';
+import * as Sentry from '@sentry/node';
 
 const app: Application = express();
 app.use(cors());
@@ -28,6 +29,18 @@ app.get('/logger', (_, res) => {
   logger.debug('Hello World!');
   res.send('Logs generated in terminal');
 });
+
+app.get('/debug-sentry', function mainHandler() {
+  // Send a log before throwing the error
+  Sentry.logger.info('User triggered test error', {
+    action: 'test_error_endpoint',
+  });
+  // Send a test metric before throwing the error
+  Sentry.metrics.count('test_counter', 1);
+  throw new Error('My first Sentry error!');
+});
+
+Sentry.setupExpressErrorHandler(app);
 
 app.use(function (
   err: HttpError,
