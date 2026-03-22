@@ -1,7 +1,6 @@
 import { addColors, createLogger, format, transports } from 'winston';
-import { config } from './index.ts';
 import Sentry from 'winston-sentry-log';
-
+import { config } from './index.ts';
 const { combine, timestamp, printf, json, errors, colorize } = format;
 
 const levels = {
@@ -19,7 +18,7 @@ const level = () => {
 };
 const options = {
   config: {
-    dsn: config.SENTRY_DSN,
+    dsn: config.DSN,
   },
   level: level(),
 };
@@ -28,9 +27,9 @@ const isProd = config.NODE_ENV === 'production';
 const colors = {
   error: 'red',
   warn: 'yellow',
-  info: 'cyan',
+  info: 'blue',
   http: 'magenta',
-  debug: 'gray',
+  debug: 'white',
 };
 
 addColors(colors);
@@ -38,7 +37,7 @@ addColors(colors);
 const myFormat = combine(
   timestamp({ format: 'YYYY-MM-DD hh:mm:ss' }),
   colorize({ all: true }),
-  errors({ stack: false }),
+  errors({ stack: !isProd }),
   isProd
     ? json()
     : printf((info) => `${info.timestamp} ${info.level}: ${info.message}`),
@@ -59,7 +58,7 @@ const myTransports = isProd
       }),
       new Sentry(options),
     ]
-  : [new transports.Console(), new Sentry(options)];
+  : [new transports.Console()];
 
 export const logger = createLogger({
   level: level(),
