@@ -7,7 +7,7 @@ import express, {
 import helmet from 'helmet';
 import cors from 'cors';
 import { authRouter } from './router/auth.routes.js';
-import { type HttpError } from 'http-errors';
+import createHttpError, { type HttpError } from 'http-errors';
 import { logger } from './config/winstonLogger.ts';
 import * as Sentry from '@sentry/node';
 
@@ -29,33 +29,17 @@ app.get('/logger', (_, res) => {
   logger.debug('Hello World!');
   res.send('Logs generated in terminal');
 });
-
 app.get('/debug-sentry', function mainHandler() {
-  // Send a log before throwing the error
-  Sentry.logger.info('User triggered test error', {
-    action: 'test_error_endpoint',
-  });
-  // Send a test metric before throwing the error
-  Sentry.metrics.count('test_counter', 1);
-  throw new Error('My first Sentry error!');
+  throw logger.error('This is an error log 2');
 });
-
 Sentry.setupExpressErrorHandler(app);
 
 app.use(function (
   err: HttpError,
   req: Request,
   res: Response,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   next: NextFunction,
 ) {
-  const status = err.status || 500;
-  const message = err.message || 'Internal Server Error';
-
-  res.status(status).json({
-    status: 'error',
-    message,
-  });
+  return next(createHttpError(500, 'something fishy fishy'));
 });
-
 export { app };

@@ -6,7 +6,7 @@ Sentry.init({
   integrations: [nodeProfilingIntegration()],
 
   // Send structured logs to Sentry
-  enableLogs: true,
+  enableLogs: false,
   // Tracing
   tracesSampleRate: 1.0, //  Capture 100% of the transactions
   // Set sampling rate for profiling - this is evaluated only once per SDK.init call
