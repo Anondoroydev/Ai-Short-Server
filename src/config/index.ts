@@ -1,5 +1,4 @@
 import type { ConfigAndEnv } from '../types/config.js';
-import type { Environment } from '../types/env.js';
 import { env } from './env.js';
 
 const _config: ConfigAndEnv = {
@@ -11,6 +10,7 @@ const _config: ConfigAndEnv = {
     'openid',
   ],
   WINSTION_LEVEL: 'info',
+  DSN: env.DSN,
 };
 
 export const config: ConfigAndEnv = Object.freeze(_config);

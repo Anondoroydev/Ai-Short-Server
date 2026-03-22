@@ -1,6 +1,6 @@
 import { addColors, createLogger, format, transports } from 'winston';
-import { config } from './index.ts';
 import Sentry from 'winston-sentry-log';
+import { config } from './index.ts';
 const { combine, timestamp, printf, json, errors, colorize } = format;
 
 const levels = {

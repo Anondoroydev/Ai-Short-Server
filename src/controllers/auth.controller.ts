@@ -28,8 +28,16 @@ async function loginCallbackController(req: Request, res: Response) {
     const userInfo = await oauth.userinfo.get();
     return res.json(userInfo.data);
   } catch (error) {
-    console.error('Login callback error:', error);
-    return res.status(500).json({ error: 'Authentication failed' });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const err = error as any;
+    console.error('Login callback error details:', {
+      message: err.message,
+      stack: err.stack,
+      response: err.response?.data,
+    });
+    return res
+      .status(500)
+      .json({ error: 'Authentication failed', details: err.message });
   }
 }
 
