@@ -1,10 +1,6 @@
 import { config } from '../config/index.ts';
 import { google, type Auth } from 'googleapis';
 
-console.log(
-  'Initializing OAuth2Client with redirect URI:',
-  config.GOOGLE_REDIRECT_URI,
-);
 const oauth2Client: Auth.OAuth2Client = new google.auth.OAuth2(
   config.GOOGLE_CLIENT_ID,
   config.GOOGLE_CLIENT_SECRET,
