@@ -145,3 +145,4 @@ vite.config.ts.timestamp-*
 
 *.wmv
 node_modules
+.env
