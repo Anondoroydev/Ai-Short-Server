@@ -1,8 +1,9 @@
-import { app } from './app.js';
 import 'dotenv/config';
-import { config } from './config/index.js';
+import { app } from './app.ts';
+import { config } from './config/index.ts';
 import { logger } from './config/winstonLogger.ts';
-
-app.listen(config.PORT, () => {
-  logger.info(`server is running on ${config.APP_URL}`);
-});
+(async () => {
+  app.listen(config.PORT, () => {
+    logger.info(`server is running on ${config.APP_URL}`);
+  });
+})();
